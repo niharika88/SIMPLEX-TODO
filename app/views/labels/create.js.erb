@@ -1,0 +1,8 @@
+<% if @label.errors.blank? %>
+  $('#label-modal').modal('hide');
+  $('table tbody').append('<%= j render "label_row", label: @label %>');
+  window.location.reload();
+<% else %>
+  // TODO: show the errors in the UI
+  alert('Snap No');
+<% end %>

@@ -1,0 +1,8 @@
+<h1>Add new item to your Todo app list!</h1>
+<%= form_for @task do |f| %>
+    <%= f.label :title %>: <%= f.text_field :title %>
+    <%= f.label :description %>: <%= f.text_field :description %>
+    <%= f.label :tags %>: <%= f.text_field :tags %>
+    <%= f.label :duedate %>: <%= f.text_field :duedate %>
+    <%= f.submit "Add to todo list" %>
+<%end %>
