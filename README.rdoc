@@ -1,6 +1,5 @@
-== README
 
-INSTRUCTIONS FOR APP USAGE:
+==== INSTRUCTIONS FOR APP USAGE:
 
 * Ruby version :  2.2.0p0
 
@@ -21,12 +20,12 @@ If required run rake db:migrate as well.
 
 * Deployment instructions
 
-git clone  <repo>
-bundle install
-rake db:setup
-rails s (Run server in localhost).
+===== git clone  <repo>
+===== bundle install
+===== rake db:setup
+===== rails s (Run server in localhost).
 
-Usage :
+==== Usage :
 
 Sign up in the app.
 click on add todo button on the top centre.
