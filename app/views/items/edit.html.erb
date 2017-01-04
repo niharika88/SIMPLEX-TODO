@@ -1,6 +1,12 @@
-<h1>Editing Item</h1>
 
+
+<section class="list">
+<article class="card">
+<h1>Editing ToDo</h1>
 <%= render 'form' %>
+<%= link_to 'Show', @item, class: "btn btn-default"  %> |
+<%= link_to 'Back', items_path, class: "btn btn-default"  %>
+</article>
+</section>
 
-<%= link_to 'Show', @item %> |
-<%= link_to 'Back', items_path %>
+

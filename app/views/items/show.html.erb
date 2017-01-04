@@ -1,5 +1,8 @@
-<p id="notice"><%= notice %></p>
 
+
+<section class="list">
+  <article class="card">
+  <h1>ToDO</h1>
 <p>
   <strong>Title:</strong>
   <%= @item.title %>
@@ -30,5 +33,7 @@
   <%= @item.status %>
 </p>
 
-<%= link_to 'Edit', edit_item_path(@item) %> |
-<%= link_to 'Back', items_path %>
+<%= link_to 'Edit', edit_item_path(@item), class: "btn btn-default" %> |
+<%= link_to 'Back', items_path, class: "btn btn-default" %>
+</article>
+</section>
