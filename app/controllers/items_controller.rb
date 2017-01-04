@@ -34,7 +34,6 @@ class ItemsController < ApplicationController
         format.html { redirect_to @item, notice: 'Item was successfully created.' }
         format.json { render :show, status: :created, location: @item }
       else
-        debugger
         format.html { render :new }
         format.json { render json: @item.errors, status: :unprocessable_entity }
       end
