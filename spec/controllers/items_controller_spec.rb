@@ -62,7 +62,6 @@ RSpec.describe ItemsController, type: :controller do
   describe "GET #show" do
     it "assigns the requested item as @item" do
       item = Item.create! valid_attributes
-      puts item
       get :show, id: item.to_param, session: valid_session
       expect(assigns(:item)).to eq(item)
     end
