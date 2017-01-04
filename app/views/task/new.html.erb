@@ -1,8 +1,13 @@
-<h1>Add new item to your Todo app list!</h1>
-<%= form_for @task do |f| %>
-    <%= f.label :title %>: <%= f.text_field :title %>
-    <%= f.label :description %>: <%= f.text_field :description %>
-    <%= f.label :tags %>: <%= f.text_field :tags %>
-    <%= f.label :duedate %>: <%= f.text_field :duedate %>
-    <%= f.submit "Add to todo list" %>
-<%end %>
+<div class="card" >
+  <img src="http://learningworksforkids.com/wp-content/uploads/to-do-list-list-notepad.jpg" alt="Avatar" style="width:50%">
+  <div class="container font-todo">
+    <h4><b>To Do App</b></h4> 
+    <p>The To Do app is a simple way to create and manage your daily tasks.
+     I have used RUBY ON RAILS for the backend logic and rails form along with simple javascript ,css, bootstrap and Jquery for frontend layout.
+     I have also use DEVISE gem for the user authentication. 
+     Seeded data for the same.One can assign diffent sorts of tags/labels to a todo.
+     Each todo can be assigned to a member (signed up for the app).
+     The three card positions in the app represents the state in which a todo currently is.
+     </p> 
+  </div>
+</div>

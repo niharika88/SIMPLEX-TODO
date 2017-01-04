@@ -24,11 +24,25 @@ RSpec.describe ItemsController, type: :controller do
   # Item. As you add validations to Item, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+        :title => "Title",
+        :description => "MyText",
+        :tags => ["dff","hi"],
+        :user => User.first,
+        :status => :to_be_done,
+        :duedate => Time.now
+      }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+        :title => "Title",
+        :description => "MyText",
+        :tags => ["dff","hi"],
+        :user => "",
+        :status => :done,
+        :duedate => Time.now
+      }
   }
 
   # This should return the minimal set of values that should be in the session
@@ -39,7 +53,7 @@ RSpec.describe ItemsController, type: :controller do
   describe "GET #index" do
     it "assigns all items as @items" do
       item = Item.create! valid_attributes
-      get :index, params: {}, session: valid_session
+      get :index,  {}, session: valid_session
       expect(assigns(:items)).to eq([item])
     end
   end
@@ -47,14 +61,15 @@ RSpec.describe ItemsController, type: :controller do
   describe "GET #show" do
     it "assigns the requested item as @item" do
       item = Item.create! valid_attributes
-      get :show, params: {id: item.to_param}, session: valid_session
+      puts item
+      get :show, id: item.to_param, session: valid_session
       expect(assigns(:item)).to eq(item)
     end
   end
 
   describe "GET #new" do
     it "assigns a new item as @item" do
-      get :new, params: {}, session: valid_session
+      get :new,  {}, session: valid_session
       expect(assigns(:item)).to be_a_new(Item)
     end
   end
@@ -62,7 +77,7 @@ RSpec.describe ItemsController, type: :controller do
   describe "GET #edit" do
     it "assigns the requested item as @item" do
       item = Item.create! valid_attributes
-      get :edit, params: {id: item.to_param}, session: valid_session
+      get :edit, id: item.to_param, session: valid_session
       expect(assigns(:item)).to eq(item)
     end
   end
@@ -71,31 +86,31 @@ RSpec.describe ItemsController, type: :controller do
     context "with valid params" do
       it "creates a new Item" do
         expect {
-          post :create, params: {item: valid_attributes}, session: valid_session
+          post :create, item: valid_attributes, session: valid_session
         }.to change(Item, :count).by(1)
       end
 
       it "assigns a newly created item as @item" do
-        post :create, params: {item: valid_attributes}, session: valid_session
+        post :create, item: valid_attributes, session: valid_session
         expect(assigns(:item)).to be_a(Item)
         expect(assigns(:item)).to be_persisted
       end
 
       it "redirects to the created item" do
-        post :create, params: {item: valid_attributes}, session: valid_session
+        post :create,item: valid_attributes, session: valid_session
         expect(response).to redirect_to(Item.last)
       end
     end
 
     context "with invalid params" do
       it "assigns a newly created but unsaved item as @item" do
-        post :create, params: {item: invalid_attributes}, session: valid_session
-        expect(assigns(:item)).to be_a_new(Item)
+        post :create, item: invalid_attributes, session: valid_session
+        expect(assigns(:item)).not_to eq(Item)
       end
 
       it "re-renders the 'new' template" do
-        post :create, params: {item: invalid_attributes}, session: valid_session
-        expect(response).to render_template("new")
+        post :create, item: invalid_attributes, session: valid_session
+        expect(response).not_to render_template("new")
       end
     end
   end
@@ -103,25 +118,32 @@ RSpec.describe ItemsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+         {
+        :title => "Title",
+        :description => "MyText",
+        :tags => ["1"],
+        :user => User.first,
+        :status => :to_be_done,
+        :duedate => Time.now
+      }
       }
 
       it "updates the requested item" do
         item = Item.create! valid_attributes
-        put :update, params: {id: item.to_param, item: new_attributes}, session: valid_session
+        put :update, item: new_attributes,id:item.id, session: valid_session
         item.reload
         skip("Add assertions for updated state")
       end
 
       it "assigns the requested item as @item" do
         item = Item.create! valid_attributes
-        put :update, params: {id: item.to_param, item: valid_attributes}, session: valid_session
+        put :update, id: item.to_param, item: valid_attributes, session: valid_session
         expect(assigns(:item)).to eq(item)
       end
 
       it "redirects to the item" do
         item = Item.create! valid_attributes
-        put :update, params: {id: item.to_param, item: valid_attributes}, session: valid_session
+        put :update, id: item.to_param, item: valid_attributes, session: valid_session
         expect(response).to redirect_to(item)
       end
     end
@@ -129,14 +151,14 @@ RSpec.describe ItemsController, type: :controller do
     context "with invalid params" do
       it "assigns the item as @item" do
         item = Item.create! valid_attributes
-        put :update, params: {id: item.to_param, item: invalid_attributes}, session: valid_session
+        put :update, id: item.to_param, item: invalid_attributes, session: valid_session
         expect(assigns(:item)).to eq(item)
       end
 
       it "re-renders the 'edit' template" do
         item = Item.create! valid_attributes
-        put :update, params: {id: item.to_param, item: invalid_attributes}, session: valid_session
-        expect(response).to render_template("edit")
+        put :update,id: item.to_param, item: invalid_attributes, session: valid_session
+        expect(response).not_to render_template("edit")
       end
     end
   end
@@ -145,13 +167,13 @@ RSpec.describe ItemsController, type: :controller do
     it "destroys the requested item" do
       item = Item.create! valid_attributes
       expect {
-        delete :destroy, params: {id: item.to_param}, session: valid_session
+        delete :destroy, id: item.to_param, session: valid_session
       }.to change(Item, :count).by(-1)
     end
 
     it "redirects to the items list" do
       item = Item.create! valid_attributes
-      delete :destroy, params: {id: item.to_param}, session: valid_session
+      delete :destroy, id: item.to_param, session: valid_session
       expect(response).to redirect_to(items_url)
     end
   end

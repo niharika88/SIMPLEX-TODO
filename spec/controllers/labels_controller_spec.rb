@@ -24,7 +24,9 @@ RSpec.describe LabelsController, type: :controller do
   # Label. As you add validations to Label, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      name: "hello"
+    }
   }
 
   let(:invalid_attributes) {
@@ -39,7 +41,7 @@ RSpec.describe LabelsController, type: :controller do
   describe "GET #index" do
     it "assigns all labels as @labels" do
       label = Label.create! valid_attributes
-      get :index, params: {}, session: valid_session
+      get :index,  {}, session: valid_session
       expect(assigns(:labels)).to eq([label])
     end
   end
@@ -47,14 +49,14 @@ RSpec.describe LabelsController, type: :controller do
   describe "GET #show" do
     it "assigns the requested label as @label" do
       label = Label.create! valid_attributes
-      get :show, params: {id: label.to_param}, session: valid_session
+      get :show, id: label.to_param, session: valid_session
       expect(assigns(:label)).to eq(label)
     end
   end
 
   describe "GET #new" do
     it "assigns a new label as @label" do
-      get :new, params: {}, session: valid_session
+      get :new, {}, session: valid_session
       expect(assigns(:label)).to be_a_new(Label)
     end
   end
@@ -62,7 +64,7 @@ RSpec.describe LabelsController, type: :controller do
   describe "GET #edit" do
     it "assigns the requested label as @label" do
       label = Label.create! valid_attributes
-      get :edit, params: {id: label.to_param}, session: valid_session
+      get :edit, id: label.to_param, session: valid_session
       expect(assigns(:label)).to eq(label)
     end
   end
@@ -71,30 +73,30 @@ RSpec.describe LabelsController, type: :controller do
     context "with valid params" do
       it "creates a new Label" do
         expect {
-          post :create, params: {label: valid_attributes}, session: valid_session
+          post :create,label: valid_attributes, session: valid_session
         }.to change(Label, :count).by(1)
       end
 
       it "assigns a newly created label as @label" do
-        post :create, params: {label: valid_attributes}, session: valid_session
+        post :create, label: valid_attributes, session: valid_session
         expect(assigns(:label)).to be_a(Label)
         expect(assigns(:label)).to be_persisted
       end
 
       it "redirects to the created label" do
-        post :create, params: {label: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(Label.last)
+        post :create, label: valid_attributes, session: valid_session
+        expect(response.body).to eq("")
       end
     end
 
     context "with invalid params" do
       it "assigns a newly created but unsaved label as @label" do
-        post :create, params: {label: invalid_attributes}, session: valid_session
+        post :create, label: invalid_attributes, session: valid_session
         expect(assigns(:label)).to be_a_new(Label)
       end
 
       it "re-renders the 'new' template" do
-        post :create, params: {label: invalid_attributes}, session: valid_session
+        post :create,label: invalid_attributes, session: valid_session
         expect(response).to render_template("new")
       end
     end
@@ -108,20 +110,20 @@ RSpec.describe LabelsController, type: :controller do
 
       it "updates the requested label" do
         label = Label.create! valid_attributes
-        put :update, params: {id: label.to_param, label: new_attributes}, session: valid_session
+        put :update, id: label.to_param, label: new_attributes, session: valid_session
         label.reload
         skip("Add assertions for updated state")
       end
 
       it "assigns the requested label as @label" do
         label = Label.create! valid_attributes
-        put :update, params: {id: label.to_param, label: valid_attributes}, session: valid_session
+        put :update, id: label.to_param, label: valid_attributes, session: valid_session
         expect(assigns(:label)).to eq(label)
       end
 
       it "redirects to the label" do
         label = Label.create! valid_attributes
-        put :update, params: {id: label.to_param, label: valid_attributes}, session: valid_session
+        put :update, id: label.to_param, label: valid_attributes, session: valid_session
         expect(response).to redirect_to(label)
       end
     end
@@ -129,13 +131,13 @@ RSpec.describe LabelsController, type: :controller do
     context "with invalid params" do
       it "assigns the label as @label" do
         label = Label.create! valid_attributes
-        put :update, params: {id: label.to_param, label: invalid_attributes}, session: valid_session
+        put :update, id: label.to_param, label: invalid_attributes, session: valid_session
         expect(assigns(:label)).to eq(label)
       end
 
       it "re-renders the 'edit' template" do
         label = Label.create! valid_attributes
-        put :update, params: {id: label.to_param, label: invalid_attributes}, session: valid_session
+        put :update, id: label.to_param, label: invalid_attributes, session: valid_session
         expect(response).to render_template("edit")
       end
     end
@@ -145,13 +147,13 @@ RSpec.describe LabelsController, type: :controller do
     it "destroys the requested label" do
       label = Label.create! valid_attributes
       expect {
-        delete :destroy, params: {id: label.to_param}, session: valid_session
+        delete :destroy, id: label.to_param, session: valid_session
       }.to change(Label, :count).by(-1)
     end
 
     it "redirects to the labels list" do
       label = Label.create! valid_attributes
-      delete :destroy, params: {id: label.to_param}, session: valid_session
+      delete :destroy, id: label.to_param, session: valid_session
       expect(response).to redirect_to(labels_url)
     end
   end
