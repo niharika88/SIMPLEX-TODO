@@ -64,5 +64,9 @@
   background-color: gray;
 }
 body{
-  background-color: #23719F;
+background-color: #23719F;
+}
+.todo-card{
+display: flex;
+justify-content: space-around;
 }

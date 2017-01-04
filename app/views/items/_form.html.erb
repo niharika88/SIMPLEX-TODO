@@ -22,7 +22,7 @@
     <%= f.select :tags, Label.all.collect {|p| [p.name, p.id] }, {}, { multiple: 'multiple', id: 'item-tags'} %>
     <div class="text-right">
       <%= link_to new_label_path(item: @item), remote: true, class: "btn btn-default btn-sm" do %>
-        <i class="glyphicon glyphicon-plus"></i> Create New Tag
+        <i class="glyphicon glyphicon-tag"></i> New Tag
       <% end %>
     </div>
   </div>
@@ -33,7 +33,7 @@
     <%= f.datetime_select :duedate, { ampm: true, order: [:day, :month, :year]}, {class: "form-control"} %>
   </div>
   <div class="field form-group">
-    <%= f.label :user_id %><br>
+    <%= f.label "Assign Member" %><br>
     <%= f.select :user_id, User.all.collect {|p| [p.email, p.id] }, {}, {class: 'form-control'} %>
   </div>
   <div class="field form-group">

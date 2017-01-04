@@ -1,8 +1,9 @@
 <p id="notice"><%= notice %></p>
 <%= link_to new_item_path, class: "btn btn-default" do %>
-  <i class="glyphicon glyphicon-plus"></i> New Todo
+  <span class="glyphicon glyphicon-pencil"></span>
 <% end %>
 
+<div class="todo-card">
 <section class="list">
   <header>To Be Done </header>
   <article class="card">
@@ -24,10 +25,10 @@
         <td><%= item.title %></td>
         <td><%= item.description %></td>
         <td><%= item.labels.collect{|p| p.name} %></td>
-        <td><%= item.duedate %></td>
-        <td><%= link_to 'Show', item, class: 'btn btn-primary btn-xs' %></td>
-        <td><%= link_to 'Edit', edit_item_path(item), class: 'btn btn-info btn-xs' %></td>
-        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' %></td>
+        <td><%= item.duedate.to_date %></td>
+        <td><%= link_to item, class: 'btn btn-primary btn-xs' do %><span class="glyphicon glyphicon-open"></span><% end %></td>
+        <td><%= link_to edit_item_path(item), class: 'btn btn-info btn-xs' do %><span class="glyphicon glyphicon-edit"></span><% end %></td>
+       <td><%= link_to item, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do %><span class="glyphicon glyphicon-remove"></span> <% end %></td>
       </tr>
       <% end %>
     <% end %>
@@ -57,10 +58,10 @@
         <td><%= item.title %></td>
         <td><%= item.description %></td>
         <td><%= item.labels.collect{|p| p.name} %></td>
-        <td><%= item.duedate %></td>
-        <td><%= link_to 'Show', item, class: 'btn btn-primary btn-xs' %></td>
-        <td><%= link_to 'Edit', edit_item_path(item), class: 'btn btn-info btn-xs' %></td>
-        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' %></td>
+        <td><%= item.duedate.to_date %></td>
+        <td><%= link_to item, class: 'btn btn-primary btn-xs' do %><span class="glyphicon glyphicon-open"></span><% end %></td>
+        <td><%= link_to edit_item_path(item), class: 'btn btn-info btn-xs' do %><span class="glyphicon glyphicon-edit"></span><% end %></td>
+       <td><%= link_to item, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do %><span class="glyphicon glyphicon-remove"></span> <% end %></td>
       </tr>
      <% end %>
     <% end %>
@@ -90,10 +91,10 @@
         <td><%= item.title %></td>
         <td><%= item.description %></td>
         <td><%= item.labels.collect{|p| p.name} %></td>
-        <td><%= item.duedate %></td>
-        <td><%= link_to 'Show', item, class: 'btn btn-primary btn-xs' %></td>
-        <td><%= link_to 'Edit', edit_item_path(item), class: 'btn btn-info btn-xs' %></td>
-        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' %></td>
+        <td><%= item.duedate.to_date %></td>
+        <td><%= link_to item, class: 'btn btn-primary btn-xs' do %> <span class="glyphicon glyphicon-open"></span><% end %></td>
+        <td><%= link_to edit_item_path(item), class: 'btn btn-info btn-xs' do %><span class="glyphicon glyphicon-edit"></span><% end %></td>
+        <td><%= link_to item, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do %><span class="glyphicon glyphicon-remove"></span> <% end %></td>
       </tr>
     <% end %>
     <% end %>
@@ -104,4 +105,4 @@
 
 <br>
 
-
+</div>

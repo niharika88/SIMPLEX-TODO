@@ -5,9 +5,10 @@ RSpec.describe "items/show", type: :view do
     @item = assign(:item, Item.create!(
       :title => "Title",
       :description => "MyText",
-      :tag => "",
-      :user => nil,
-      :status => 2
+      :tags => [""],
+      :user => User.create(email: "hiii"),
+      :status => 2,
+      :duedate => Time.now
     ))
   end
 
@@ -15,8 +16,6 @@ RSpec.describe "items/show", type: :view do
     render
     expect(rendered).to match(/Title/)
     expect(rendered).to match(/MyText/)
-    expect(rendered).to match(//)
-    expect(rendered).to match(//)
-    expect(rendered).to match(/2/)
+   
   end
 end
