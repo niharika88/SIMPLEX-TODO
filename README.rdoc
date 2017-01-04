@@ -18,11 +18,11 @@
 
 ==== Usage :
 
-Sign up in the app.
-click on add todo button on the top centre.
-Add a new label (form will refresh if a new entry is made)
-Add form attributes.
-Click submit.
-Newly created Todo will be populated in the CARD as per the status.
+     - Sign up in the app.
+     - click on add todo button on the top centre.
+     - Add a new label (form will refresh if a new entry is made)
+     - Add form attributes.
+     - Click submit.
+     - Newly created Todo will be populated in the CARD as per the status.
 
 
