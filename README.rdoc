@@ -1,28 +1,38 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+INSTRUCTIONS FOR APP USAGE:
 
-Things you may want to cover:
+* Ruby version :  2.2.0p0
 
-* Ruby version
-
-* System dependencies
+* System dependencies : Linux/MACOS 
 
 * Configuration
 
-* Database creation
+* Database creation : rake db:setup 
+Will seed the databse with Label entries of randomly generated Labels.
+You can also create new labels on the fly while creating a new to-do entry.
+If required run rake db:migrate as well.
 
 * Database initialization
 
-* How to run the test suite
+* How to run the test suite : rspec <spec_name>
 
-* Services (job queues, cache servers, search engines, etc.)
+* Services (job queues, cache servers, search engines, etc.): none
 
 * Deployment instructions
 
-* ...
+git clone  <repo>
+bundle install
+rake db:setup
+rails s (Run server in localhost).
+
+Usage :
+
+Sign up in the app.
+click on add todo button on the top centre.
+Add a new label(form will refresh if new entry)
+Add form attributes.
+Click submit.
+To do will be populated in the CARD as per the status.
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.

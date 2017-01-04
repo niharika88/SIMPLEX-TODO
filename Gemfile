@@ -27,6 +27,7 @@ gem 'bootstrap-sass'
 gem 'jquery-turbolinks'
 gem 'bootstrap-multiselect-rails'
 gem 'jquery-turbolinks'
+gem 'faker'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

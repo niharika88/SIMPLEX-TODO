@@ -3,14 +3,16 @@
 <div class="new-todo">
 
 <%= link_to new_item_path, class: "btn btn-default" do %>
-  <span class="glyphicon glyphicon-pencil"></span>
+  <span class="glyphicon glyphicon-plus"></span>
 <% end %>
 </div>
 
+
 <div class="todo-card">
+<% Item.statuses.keys.each do |status| %>
 <section class="list">
-  <header>To Be Done </header>
-  <article class="card">
+<header style="text-align:center"><%= status.titleize.upcase %></header>
+<article class="card">
 <table class="table table-striped table-hover">
   <thead>
     <tr>
@@ -21,14 +23,16 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-
   <tbody>
     <% @items.each do |item| %>
-    <% if item.status == "to_be_done" && item.user == current_user %>
+    <% if item.status == status && item.user == current_user %>
       <tr>
         <td><%= item.title %></td>
         <td><%= item.description %></td>
-        <td><%= item.labels.collect{|p| p.name} %></td>
+        <td><% item.labels.each do |l| %>
+          <div class="btn btn-warning btn-xs "><%= l.name %></div>
+        <% end %>
+        </td>
         <td><%= item.duedate.to_date %></td>
         <td><%= link_to item, class: 'btn btn-primary btn-xs' do %><span class="glyphicon glyphicon-open"></span><% end %></td>
         <td><%= link_to edit_item_path(item), class: 'btn btn-info btn-xs' do %><span class="glyphicon glyphicon-edit"></span><% end %></td>
@@ -40,73 +44,7 @@
 </table>
 </article>
 </section>
-
-<section class="list">
-  <header>Doing</header>
-  <article class="card">
-<table class="table table-striped table-hover">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Tags</th>
-      <th>Duedate</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @items.each do |item| %>
-    <% if item.status == "doing" && item.user == current_user %>
-      <tr>
-        <td><%= item.title %></td>
-        <td><%= item.description %></td>
-        <td><%= item.labels.collect{|p| p.name} %></td>
-        <td><%= item.duedate.to_date %></td>
-        <td><%= link_to item, class: 'btn btn-primary btn-xs' do %><span class="glyphicon glyphicon-open"></span><% end %></td>
-        <td><%= link_to edit_item_path(item), class: 'btn btn-info btn-xs' do %><span class="glyphicon glyphicon-edit"></span><% end %></td>
-       <td><%= link_to item, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do %><span class="glyphicon glyphicon-remove"></span> <% end %></td>
-      </tr>
-     <% end %>
-    <% end %>
-  </tbody>
-</table>
- </article>
-</section>
-
-<section class="list">
-  <header>Done</header>
-  <article class="card">
-  <table class="table table-striped table-hover">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Tags</th>
-      <th>Duedate</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
- 
-  <tbody>
-    <% @items.each do |item| %>
-    <% if item.status == "done" && item.user == current_user %>
-      <tr>
-        <td><%= item.title %></td>
-        <td><%= item.description %></td>
-        <td><%= item.labels.collect{|p| p.name} %></td>
-        <td><%= item.duedate.to_date %></td>
-        <td><%= link_to item, class: 'btn btn-primary btn-xs' do %> <span class="glyphicon glyphicon-open"></span><% end %></td>
-        <td><%= link_to edit_item_path(item), class: 'btn btn-info btn-xs' do %><span class="glyphicon glyphicon-edit"></span><% end %></td>
-        <td><%= link_to item, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do %><span class="glyphicon glyphicon-remove"></span> <% end %></td>
-      </tr>
-    <% end %>
-    <% end %>
-  </tbody>
-</table>
-  </article>
-</section>
-
+<% end %>
 <br>
 
 </div>

@@ -15,7 +15,7 @@
 
 <p>
   <strong>Tag:</strong>
-  <%= @item.tags %>
+  <%= @item.labels.collect{|l| l.name} %>
 </p>
 
 <p>

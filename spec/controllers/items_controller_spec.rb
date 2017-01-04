@@ -58,6 +58,7 @@ RSpec.describe ItemsController, type: :controller do
     end
   end
 
+ 
   describe "GET #show" do
     it "assigns the requested item as @item" do
       item = Item.create! valid_attributes
